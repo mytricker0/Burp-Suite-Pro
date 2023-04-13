@@ -31,7 +31,8 @@
 	3. Select Manual Activation Option on your bottom Right in Burp Suite Pro.
 	4. Copy License Request from BurpSuite_Pro and paste in Keygenerator.
 	5. Copy license response from Keygenerator and paste in Burp Suite Pro, then next and Done.
-	
+Video Tutorial
+	https://www.youtube.com/watch?v=YB-8s4johLc
 -----------------------------------------------------------------------------------------------------------------
 # Executing Burp Suite Profession after Activation
 	--> Windows :-: You can start Burp Suite Professional from Start Menu.
