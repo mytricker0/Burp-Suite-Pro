@@ -21,6 +21,7 @@ echo "  This script is made by CyberZest
 if ! command -v javac >/dev/null 2>&1; then
     echo "Java JDK 19 is not installed, installing"
     mkdir -p /usr/local/java
+    mkdir -p /usr/local/java/jdk19
     curl -L https://download.oracle.com/java/19/latest/jdk-19_linux-x64_bin.tar.gz -o jdk19.tar.gz
     tar -xf jdk19.tar.gz -C /usr/local/java/jdk19 --strip-components=1
     rm jdk19.tar.gz
@@ -57,9 +58,9 @@ if [[ $EUID -eq 0 ]]; then
     cd /usr/share/burpsuite/
 	rm burpsuite.jar
     html=$(curl -s https://portswigger.net/burp/releases)
-    version=$(echo $html | grep -Po '(?<=/burp/releases/professional-community-)[0-9]+\-[0-9]+\-[0-9]+' | head -1)
+    version=$(echo $html | grep -Po '(?<=/burp/releases/professional-community-)[0-9]+\-[0-9]+\-[0-9]+' | head -n 1)
     Link="https://portswigger-cdn.net/burp/releases/download?product=pro&version=&type=jar"
-#    echo $version
+    echo $version
     wget "$Link" -O burpsuite_pro_v$version.jar --quiet --show-progress
     sleep 2
     
@@ -67,7 +68,7 @@ if [[ $EUID -eq 0 ]]; then
     echo 'Executing Burp Suite Professional with Keyloader'
     echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$version.jar &" > burpsuite
     chmod +x burpsuite
-    cp burp /bin/burpsuite
+    cp burpsuite /bin/burpsuite
 
     # execute Keygenerator
     echo 'Starting Keygenerator'
