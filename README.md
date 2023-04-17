@@ -34,10 +34,10 @@
 
 # Video Tutorial
 	# For Windows
-	[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YB-8s4johLc/0.jpg)](https://www.youtube.com/watch?v=YB-8s4johLc)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YB-8s4johLc/0.jpg)](https://www.youtube.com/watch?v=YB-8s4johLc)
 	
 	# For Kali Linux, Parrot OS, Ubuntu
-	[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/47RuPyGnq_0/0.jpg)](https://www.youtube.com/watch?v=47RuPyGnq_0)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/47RuPyGnq_0/0.jpg)](https://www.youtube.com/watch?v=47RuPyGnq_0)
 	
 -----------------------------------------------------------------------------------------------------------------
 # Executing Burp Suite Profession after Activation
