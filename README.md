@@ -1,7 +1,18 @@
 # Burp-Suite-Pro
 
-<a href="https://www.buymeacoffee.com/cyb3rzest" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+//<a href="https://www.buymeacoffee.com/cyb3rzest" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
+
+<p align="center">
+<a href="#"><img src="https://madewithlove.org.in/badge.svg"></a>
+<a href="https://buymeacoffee.com/cyb3rzest"><img src="https://img.shields.io/badge/buy%20me%20a%20Coffee%20-donate-red"></a>
+<a href="https://twitter.com/cyb3rzest/"><img src="https://img.shields.io/badge/twitter-%40CyberZeast-blue.svg"></a>
+<a href="https://github.com/cyb3rzest/Vasuki/issues"><img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat"></a>
+<a href="#"><img src="https://img.shields.io/badge/Made%20with-Bash-1f425f.svg"></a>
+<a href="https://github.com/cyb3rzest?tab=followers"><img src="https://img.shields.io/badge/github-%40cyb3rzest-red"></a>
+</p>
+
+---
 
 --------------------------------------------------------------------------------------------
 # Burp Suite Professional Installation steps for Windows
