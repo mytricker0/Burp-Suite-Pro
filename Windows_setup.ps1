@@ -20,7 +20,7 @@ $ProgressPreference = 'SilentlyContinue'
 $jdk19 = Get-WmiObject -Class Win32_Product -filter "Vendor='Oracle Corporation'" |where Caption -clike "Java(TM) SE Development Kit 19*"
 if (!($jdk19)){
     echo "`t`tDownnloading Java JDK-19 ...."
-    wget "https://download.oracle.com/java/19/latest/jdk-19_windows-x64_bin.exe" -O jdk-19.exe  
+    wget "https://download.oracle.com/java/19/archive/jdk-19_windows-x64_bin.exe" -O jdk-19.exe  
     echo "`n`t`tJDK-19 Downloaded, lets start the Installation process"
     start -wait jdk-19.exe
     rm jdk-19.exe
@@ -33,7 +33,7 @@ if (!($jdk19)){
 $jre8 = Get-WmiObject -Class Win32_Product -filter "Vendor='Oracle Corporation'" |where Caption -clike "Java 8 Update *"
 if (!($jre8)){
     echo "`n`t`tDownloading Java JRE ...."
-    wget "https://javadl.oracle.com/webapps/download/AutoDL?BundleId=246474_2dee051a5d0647d5be72a7c0abff270e" -O jre-8.exe
+    wget "https://javadl.oracle.com/webapps/download/AutoDL?BundleId=247947_0ae14417abb444ebb02b9815e2103550" -O jre-8.exe
     echo "`n`t`tJRE-8 Downloaded, lets start the Installation process"
     start -wait jre-8.exe
     rm jre-8.exe
