@@ -26,7 +26,7 @@ if ! command -v javac >/dev/null 2>&1; then
     tar -xf jdk19.tar.gz -C /usr/local/java/jdk19 --strip-components=1
     rm jdk19.tar.gz
     echo "export JAVA_HOME=/usr/local/java/jdk19" | sudo tee -a /etc/environment
-    echo "export PATH=\$PATH:\$JAVA_HOME/bin" | sudo tee -a /etc/environment
+    echo "export PATH=$PATH:$JAVA_HOME/bin" | sudo tee -a /etc/environment   #by @ricardev2023
     sudo update-alternatives --install /usr/bin/java java /usr/local/java/jdk19/bin/java 1
     sudo update-alternatives --install /usr/bin/javac javac /usr/local/java/jdk19/bin/javac 1
     source /etc/profile
