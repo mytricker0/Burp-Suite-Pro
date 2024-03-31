@@ -14,7 +14,7 @@ ${WH}██║       ╚██╔╝  ██╔══██╗ ╚═══█�
 ${GR}╚██████╗   ██║   ██████╔╝██████╔╝██║${BL}  █${NL}${GR}█║███████╗███████╗███████║   ██║   ${NL}
 ${GR} ╚═════╝   ╚═╝   ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝   ${NL}
 "
-echo "  This script is made by CyberZest
+echo "  This script is made by CyberZest and improved by mytricker0
 "
 
 # Check if Java JDK 19 is installed
@@ -47,35 +47,88 @@ if ! command -v java >/dev/null 2>&1; then
     echo "Java JRE 8 downloaded and installed successfully"
 fi
 
-if [[ $EUID -eq 0 ]]; then
-    # Download Burp Suite Profesional Latet Version
-    echo 'Downloading Burp Suite Professional ....'
-    mkdir -p /usr/share/burpsuite
-    cp loader.jar /usr/share/burpsuite/
-    cp burp_suite.ico /usr/share/burpsuite/
-    rm Windows_setup.ps1
-    rm -rf .git
-    cd /usr/share/burpsuite/
-	rm burpsuite.jar
-    html=$(curl -s https://portswigger.net/burp/releases)
-    version=$(echo $html | grep -Po '(?<=/burp/releases/professional-community-)[0-9]+\-[0-9]+\-[0-9]+' | head -n 1)
-    Link="https://portswigger-cdn.net/burp/releases/download?product=pro&version=&type=jar"
-    echo $version
-    wget "$Link" -O burpsuite_pro_v$version.jar --quiet --show-progress
-    sleep 2
-    
-    # Execute Burp Suite Professional with Keyloader
-    echo 'Executing Burp Suite Professional with Keyloader'
-    echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$version.jar &" > burpsuite
-    chmod +x burpsuite
-    cp burpsuite /bin/burpsuite
 
-    # execute Keygenerator
-    echo 'Starting Keygenerator'
-    (java -jar loader.jar) &
-    sleep 3s
-    (./burpsuite)
-else
+if [[ $EUID -ne 0 ]]; then
     echo "Execute Command as Root User"
-    exit
+    exit 1
 fi
+
+
+
+# Download Burp Suite Profesional Latet Version
+echo 'Downloading Burp Suite Professional ....'
+mkdir -p /usr/share/burpsuite
+cp loader.jar /usr/share/burpsuite/
+cp burp_suite.ico /usr/share/burpsuite/
+rm Windows_setup.ps1
+rm -rf .git
+cd /usr/share/burpsuite/
+rm burpsuite.jar
+html=$(curl -s https://portswigger.net/burp/releases)
+version=$(echo $html | grep -Po '(?<=/burp/releases/professional-community-)[0-9]+\-[0-9]+\-[0-9]+' | head -n 1)
+Link="https://portswigger-cdn.net/burp/releases/download?product=pro&version=&type=jar"
+echo $version
+wget "$Link" -O burpsuite_pro_v$version.jar --quiet --show-progress
+sleep 2
+
+# Execute Burp Suite Professional with Keyloader
+echo 'Executing Burp Suite Professional with Keyloader'
+echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED--add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$version.jar &" > burpsuite
+chmod +x burpsuite
+cp burpsuite /bin/burpsuite
+
+# execute Keygenerator
+echo 'Starting Keygenerator'
+(java -jar loader.jar) &
+sleep 3s
+(./burpsuite)
+
+
+# Additional setup for desktop entry and PolicyKit policy
+# Create the BurpSuiteProWrapper.sh script
+cat > /usr/bin/BurpSuiteProWrapper.sh << EOF
+#!/bin/bash
+# Navigate to the Burp Suite installation directory
+cd /usr/share/burpsuite/
+/bin/burpsuite
+EOF
+
+# Make the wrapper script executable
+chmod +x /usr/bin/BurpSuiteProWrapper.sh
+
+# Create the desktop entry for Burp Suite Pro
+cat > /usr/share/applications/burpsuite_pro.desktop << EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Burp Suite Pro
+Comment=Burp Suite Pro Cracked
+Exec=pkexec /usr/bin/BurpSuiteProWrapper.sh
+Icon=$(pwd)/burp_suite.ico
+Terminal=false
+Categories=Utility;
+EOF
+
+# Update the icon path according to the user's actual icon location
+
+# Create the PolicyKit file
+cat > /usr/share/polkit-1/actions/com.yourcompany.burpsuite.policy << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN" "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+    <action id="com.yourcompany.burpsuite">
+        <description>Run Burp Suite as root</description>
+        <message>Authentication is required to run Burp Suite as root</message>
+        <defaults>
+            <allow_any>auth_admin</allow_any>
+            <allow_inactive>auth_admin</allow_inactive>
+            <allow_active>auth_admin</allow_active>
+        </defaults>
+        <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/BurpSuiteProWrapper.sh</annotate>
+        <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+    </action>
+</policyconfig>
+EOF
+
+echo "Setup complete. You can find Burp Suite Pro in your applications menu."
+
