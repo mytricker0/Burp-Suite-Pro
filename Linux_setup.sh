@@ -14,7 +14,7 @@ ${WH}██║       ╚██╔╝  ██╔══██╗ ╚═══█�
 ${GR}╚██████╗   ██║   ██████╔╝██████╔╝██║${BL}  █${NL}${GR}█║███████╗███████╗███████║   ██║   ${NL}
 ${GR} ╚═════╝   ╚═╝   ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝   ${NL}
 "
-echo "  This script is made by CyberZest and improved by mytricker0
+echo "  This script is made by CyberZest and improved by mytricker0 error solved by Sh1vam
 "
 
 # Check if Java JDK 19 is installed
@@ -103,7 +103,7 @@ Version=1.0
 Type=Application
 Name=Burp Suite Pro
 Comment=Burp Suite Pro Cracked
-Exec=pkexec /usr/bin/BurpSuiteProWrapper.sh
+Exec=burpsuite
 Icon=$(pwd)/burp_suite.ico
 Terminal=false
 Categories=Utility;
