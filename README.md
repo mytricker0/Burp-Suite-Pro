@@ -28,7 +28,7 @@
 
 -----------------------------------------------------------------------------------------------------------------
 # Burp Suite Professional Installation steps for Kali-Linux 
-	--> Execute Kali_Linux_Setup.sh file as root user
+	--> Execute Kali_Linux_Setup.sh file as root user but before this remove older burpsuite which may conflict with this one
 
 -----------------------------------------------------------------------------------------------------------------
 # Burp Suite Pro Activation Steps 
