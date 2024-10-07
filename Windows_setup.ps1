@@ -16,17 +16,17 @@ echo "  This script is made by Cyber Zest"
 echo "Setting Wget Progress to Silent, Becuase it slows down Downloading by 50x`n"
 $ProgressPreference = 'SilentlyContinue'
 
-# Check JDK-18 or 19 Availability or Download JDK-18 or 19
-$jdk19 = Get-WmiObject -Class Win32_Product -filter "Vendor='Oracle Corporation'" |where Caption -clike "Java(TM) SE Development Kit 19*"
-if (!($jdk19)){
+# Check JDK-18 or 21 Availability or Download JDK-18 or 21
+$jdk21 = Get-WmiObject -Class Win32_Product -filter "Vendor='Oracle Corporation'" |where Caption -clike "Java(TM) SE Development Kit 21*"
+if (!($jdk21)){
     echo "`t`tDownnloading Java JDK-21 ...."
     wget "https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.exe" -O jdk-21.exe  
     echo "`n`t`tJDK-21 Downloaded, lets start the Installation process"
     start -wait jdk-21.exe
-    rm jdk-19.exe
+    rm jdk-21.exe
 }else{
     echo "Required JDK-21 is Installed"
-    $jdk19
+    $jdk21
 }
 
 # Check JRE-8 Availability or Download JRE-8
