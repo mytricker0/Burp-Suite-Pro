@@ -17,20 +17,20 @@ ${GR} ╚═════╝   ╚═╝   ╚═════╝ ╚════�
 echo "  This script is made by CyberZest and improved by mytricker0
 "
 
-# Check if Java JDK 19 is installed
+# Check if Java JDK 21 is installed
 if ! command -v javac >/dev/null 2>&1; then
-    echo "Java JDK 19 is not installed, installing"
+    echo "Java JDK 21 is not installed, installing"
     mkdir -p /usr/local/java
-    mkdir -p /usr/local/java/jdk19
-    curl -L https://download.oracle.com/java/19/archive/jdk-19_linux-x64_bin.tar.gz -o jdk19.tar.gz
-    tar -xf jdk19.tar.gz -C /usr/local/java/jdk19 --strip-components=1
-    rm jdk19.tar.gz
-    echo "export JAVA_HOME=/usr/local/java/jdk19" | sudo tee -a /etc/environment
+    mkdir -p /usr/local/java/jdk21
+    curl -L https://download.oracle.com/java/21/archive/jdk-21.0.3_linux-x64_bin.tar.gz -o jdk21.tar.gz
+    tar -xf jdk21.tar.gz -C /usr/local/java/jdk21 --strip-components=1
+    rm jdk21.tar.gz
+    echo "export JAVA_HOME=/usr/local/java/jdk21" | sudo tee -a /etc/environment
     echo "export PATH=$PATH:$JAVA_HOME/bin" | sudo tee -a /etc/environment   #by @ricardev2023
-    sudo update-alternatives --install /usr/bin/java java /usr/local/java/jdk19/bin/java 1
-    sudo update-alternatives --install /usr/bin/javac javac /usr/local/java/jdk19/bin/javac 1
+    sudo update-alternatives --install /usr/bin/java java /usr/local/java/jdk21/bin/java 1
+    sudo update-alternatives --install /usr/bin/javac javac /usr/local/java/jdk21/bin/javac 1
     source /etc/profile
-    echo "Java JDK 19 downloaded and installed successfully"
+    echo "Java JDK 21 downloaded and installed successfully"
 fi
 
 # Check if Java JRE 8 is installed
