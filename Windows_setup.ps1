@@ -20,7 +20,7 @@ $ProgressPreference = 'SilentlyContinue'
 $jdk19 = Get-WmiObject -Class Win32_Product -filter "Vendor='Oracle Corporation'" |where Caption -clike "Java(TM) SE Development Kit 19*"
 if (!($jdk19)){
     echo "`t`tDownnloading Java JDK-19 ...."
-    wget "https://download.oracle.com/java/19/archive/jdk-19_windows-x64_bin.exe" -O jdk-19.exe  
+    wget "https://download.oracle.com/java/21/archive/jdk-21.0.3_windows-x64_bin.exe" -O jdk-19.exe  
     echo "`n`t`tJDK-19 Downloaded, lets start the Installation process"
     start -wait jdk-19.exe
     rm jdk-19.exe
